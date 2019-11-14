@@ -14,7 +14,7 @@ pipeline {
         //TODO: Edit these vars as per your env
         DEV_PROJECT = "likai-ang-books-dev"
         STAGE_PROJECT = "likai-ang-books-stage"
-        APP_GIT_URL = "https://github.com/raymond-infinitecode/DO288-apps"
+        APP_GIT_URL = "https://github.com/raymond-infinitecode"
         NEXUS_SERVER = "http://nexus-common.apps.ocp-ap1.prod.nextcle.com/repository/nodejs"
 
         // DO NOT CHANGE THE GLOBAL VARS BELOW THIS LINE
