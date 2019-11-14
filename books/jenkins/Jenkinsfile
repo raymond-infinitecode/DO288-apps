@@ -14,7 +14,7 @@ pipeline {
         //TODO: Edit these vars as per your env
         DEV_PROJECT = "likai-ang-books-dev"
         STAGE_PROJECT = "likai-ang-books-stage"
-        APP_GIT_URL = "https://github.com/raymond-infinitecode"
+        APP_GIT_URL = "https://github.com/raymond-infinitecode/DO288-apps"
         NEXUS_SERVER = "http://nexus-common.apps.ocp-ap1.prod.nextcle.com/repository/nodejs"
 
         // DO NOT CHANGE THE GLOBAL VARS BELOW THIS LINE
@@ -60,11 +60,13 @@ pipeline {
 
                 echo '### Creating a new app in DEV env ###'
                 //TODO: Create a new app and expose the service
+                sh '''
                 oc project ${DEV_PROJECT}
                 oc new-app --name books nodejs:8~${APP_GIT_URL} \
                 --build-env npm_config_registry=${NEXUS_SERVER} \
                 --context-dir ${APP_NAME}
                 oc expose svc/${APP_NAME}
+                   '''
             }
         }
 
@@ -125,9 +127,11 @@ pipeline {
 
                 echo '### Creating a new app in Staging ###'
                 //TODO: Create a new app in stage using the books:stage image stream and expose the service
+                sh '''
                 oc project ${STAGE_PROJECT}
                 oc new-app --name books -i books:stage
                 oc expose svc/${APP_NAME}
+                   '''
             }
         }
 
